@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+
+<div id="content">
+	<input id="remoteConnect" type="button" class="btn btn-success" value="Remote Connect" />
+	<input id="remoteDisconnect" type="button" class="btn btn-danger" value="Remote Disconnect" />
+
+	<table id="balanceTable" class="table table-hover table-bordered">
+		<tr>
+			<th>Account Number</th>
+			<th>XRP</th>
+		</tr>
+		<tr>
+			<th>Total</th>
+			<th class="XRP">0</th>
+		</tr>		
+	</table>
+	<div class="row">
+		<input id="newAccount" type="text" class="form-control"/>
+		<input id="addAccountButton" class="btn btn-primary" value="Add Account" type="button"/>
+	</div>
+	
+	<div id="demo-accounts">
+		<h3> demo accounts</h3>
+		<p>rUB4uZESnjSp2r7Uw1PnKSPWNMkTDCMXDJ</p>
+		<p>rBTC1BgnrukYh9gfE8uL5dqnPCfZXUxiho</p>
+		<p>r4ffgYrACcB82bt99VnqH4B9GEntEypTcp</p>
+	</div>
+
+</div>
+
+<div id="errPopup"></div>
+<div id="successPopup"></div>
+
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script src="js/AccountsData.js"></script>
+<script src="js/TableManager.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

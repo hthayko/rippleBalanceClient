@@ -1,0 +1,63 @@
+.row
+{
+	margin: 20px 0 0 0;
+}
+
+.row *
+{
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+#content
+{
+	max-width: 900px;
+	padding: 20px;
+}
+
+#newAccount
+{
+	width: 400px;
+}
+
+#balanceTable
+{
+	margin: 20px 0 0 0;
+}
+#errPopup, #successPopup
+{
+	position: fixed;
+	right: 20px;
+	border: 1px solid black;
+	text-align: center;
+	display: none;
+	padding: 20px;
+	border-radius: 6px;
+	background: -webkit-linear-gradient(white, grey); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(white, grey); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(white, grey); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(white, grey); /* Standard syntax */		
+}
+
+#errPopup
+{
+	color: red;	
+	top: 140px;
+}
+
+#successPopup
+{
+	color: green;	
+	top: 20px;
+}
+
+#demo-accounts
+{
+	margin: 20px 0 0 0;	
+}
+#demo-accounts p
+{
+	margin: 4px 0;
+	color: grey;
+}
