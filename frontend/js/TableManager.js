@@ -1,3 +1,8 @@
+/*
+	Constructor TableManager
+	constructs object for representing accounts data in a table specified by tabelID param
+*/
+
 function TableManager(tabelID)
 {
 	var self = this;
@@ -6,6 +11,7 @@ function TableManager(tabelID)
 	self.totals = { "XRP" : 0 };
 	self.precision = 6;
 
+	/*	adds a new row with corresponding data to existing table	*/
 	self.addRow = function(accountsData, account)
 	{	
 		$tr = $("<tr></tr>").insertBefore($("tr:last-child",self.$table));
@@ -34,6 +40,7 @@ function TableManager(tabelID)
 		updateTotals();
 	}
 
+	/*	helper method for adding new column for new currency	*/
 	function addColumn(colName)
 	{
 		$("<td></td>").addClass(colName).html("-").appendTo($("tr:not(:first-child):not(:last-child)", self.$table));
@@ -41,6 +48,7 @@ function TableManager(tabelID)
 		$("<th></th>").addClass(colName).html("0").appendTo($("tr:last-child", self.$table));		
 	}
 
+	/*	helper method to retrieve all currencies from the accountData	*/
 	function getAllCurrencies(accountsData, account)
 	{
 		var all = {}, i;
@@ -54,6 +62,7 @@ function TableManager(tabelID)
 		return all;
 	}
 
+	/*	helper method to update totals row of the table	*/
 	function updateTotals()
 	{
 		var i;
@@ -63,6 +72,7 @@ function TableManager(tabelID)
 		}	
 	}
 
+	/*	helper method to bring the number to specified precision	*/
 	function toFixed(num)
 	{
 		var tensPow = Math.pow(10, self.precision) + 0.0;

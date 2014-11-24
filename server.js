@@ -8,6 +8,7 @@ var remote = new Remote({
 	servers: [ 'wss://s1.ripple.com:443' ] 
 });
 
+/*	a wrapper for Ripple Remote to provide API for the client*/
 var rippleAPI = {
 	getAccountInfo: function(req, res){	
 		if(!remote.isConnected()) return res.send(errorResponse("remote is not connected"));
@@ -54,6 +55,8 @@ app.route("/rippleClient")
 app.use("/css", express.static(path.join(__dirname, "frontend", "css")));
 app.use("/js", express.static(path.join(__dirname, "frontend", "js")));
 
+
+/*	connects urls to corresponding handlers	*/
 function manageRouting()
 {
 	for(var url in rippleAPI)
@@ -70,6 +73,8 @@ function manageRouting()
 	}
 }
 
+
+/*	a wrapper for error reponses sent to client */
 function errorResponse(errMsg, data)
 {
 	var d = data || {};
@@ -78,6 +83,7 @@ function errorResponse(errMsg, data)
 	return JSON.stringify(d);
 }
 
+/*	a wrapper for successful reponses sent to client */
 function successResponse(data)
 {
 	var d = data || {};
