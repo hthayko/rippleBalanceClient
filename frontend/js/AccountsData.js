@@ -1,57 +1,58 @@
 function AccountsData()
 {
-	this.accounts = {};
-}
+	var self = this;
+	accounts = {};
+	self.statusTypes = {PENDING: "PENDING", SUCCESS : "SUCCESS", FAILED : "FAILED"}
 
-AccountsData.prototype.add = function(accountName)
-{
-	this.accounts[accountName] = {
-		accountInfo : {
-			status: "PENDING"
-		},
-		accountLines : {
-			status: "PENDING"
-		}
-	};
-} 
-
-/*
-*	function getStatus(accountName)
-*	returns "SUCCESS" if all requests corresponding to this account name succeeded
-*	returns "FAILED" if any request corresponding to this account FAILED
-*	returns "PENDING" if there were no FAILURES but there is a PENDING request
-*/
-AccountsData.prototype.getStatus = function(accountName)
-{
-	if(!this.accounts[accountName])	return "FAILED";
-	var pendingExists = false;
-	for(var type in this.accounts[accountName])
+	self.add = function(accountName)
 	{
-		if(this.accounts[accountName][type].status == "FAILED")	return "FAILED";
-		if(this.accounts[accountName][type].status == "PENDING")	pendingExists = true;
+		accounts[accountName] = {
+			accountInfo : {
+				status: self.statusTypes.PENDING
+			},
+			accountLines : {
+				status: self.statusTypes.PENDING
+			}
+		};
+	} 
+
+	/*
+	*	function getStatus(accountName)
+	*	returns "SUCCESS" if all requests corresponding to self account name succeeded
+	*	returns "FAILED" if any request corresponding to self account FAILED
+	*	returns "PENDING" if there were no FAILURES but there is a PENDING request
+	*/
+	self.getStatus = function(accountName)
+	{
+		if(!accounts[accountName])	return self.statusTypes.FAILED;
+		var pendingExists = false;
+		for(var type in accounts[accountName])
+		{
+			if(accounts[accountName][type].status == self.statusTypes.FAILED)	return self.statusTypes.FAILED;
+			if(accounts[accountName][type].status == self.statusTypes.PENDING)	pendingExists = true;
+		}
+		if(pendingExists)	return self.statusTypes.PENDING;
+		return self.statusTypes.SUCCESS;
 	}
-	if(pendingExists)	return "PENDING";
-	return "SUCCESS";
-}
 
-AccountsData.prototype.setStatus = function(accountName, type, status, callBack)
-{
-	this.accounts[accountName][type].status = status;
-	if(this.getStatus(accountName) == "SUCCESS")	callBack(accountName);
-}
+	self.setStatus = function(accountName, type, status, callBack)
+	{
+		accounts[accountName][type].status = status;
+		if(self.getStatus(accountName) == self.statusTypes.SUCCESS && callBack)	callBack(accountName);
+	}
 
-AccountsData.prototype.populate = function(accountName, type, data)
-{
-	this.accounts[accountName][type].data = data;
-}
+	self.populate = function(accountName, type, data)
+	{
+		accounts[accountName][type].data = data;
+	}
 
-AccountsData.prototype.getXRP = function(accountName)
-{
-	return this.accounts[accountName].accountInfo.data.account_data.Balance;
-}
+	self.getXRP = function(accountName)
+	{
+		return accounts[accountName].accountInfo.data.account_data.Balance;
+	}
 
-AccountsData.prototype.getTrustlines = function(accountName)
-{
-	return this.accounts[accountName].accountLines.data.lines;
+	self.getTrustlines = function(accountName)
+	{
+		return accounts[accountName].accountLines.data.lines;
+	}
 }
-

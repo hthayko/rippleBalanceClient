@@ -9,7 +9,6 @@
 	vertical-align: top;
 }
 
-
 #content
 {
 	max-width: 900px;
@@ -25,6 +24,19 @@
 {
 	margin: 20px 0 0 0;
 }
+
+#balanceTable td span.glyphicon
+{
+	margin: 0 10px;
+	display: inline;
+	
+}
+
+#balanceTable td span.glyphicon-refresh
+{
+	cursor: pointer;
+}
+
 #errPopup, #successPopup
 {
 	position: fixed;
@@ -56,8 +68,13 @@
 {
 	margin: 20px 0 0 0;	
 }
+#demo-accounts h3
+{
+	margin: 20px 0 0 0;
+}
 #demo-accounts p
 {
 	margin: 4px 0;
 	color: grey;
+	font-style: italic;
 }

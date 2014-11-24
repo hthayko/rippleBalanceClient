@@ -13,7 +13,7 @@ function Controller(view)
 
 	self.getAccountBalances = function(account)
 	{
-		if(self.accountsData.getStatus(account) === "SUCCESS")	
+		if(self.accountsData.getStatus(account) === self.accountsData.statusTypes.SUCCESS)	
 		{
 			self.view.showError("Account is in the list already");
 			return;
@@ -43,17 +43,17 @@ function Controller(view)
 				if(!res.success)
 				{
 					self.view.showError(res.errorMsg);
-					self.accountsData.setStatus(account, type, "FAILED");
+					self.accountsData.setStatus(account, type, self.accountsData.statusTypes.FAILED);
 					return;
 				}
 				self.accountsData.populate(account, type, res);
-				self.accountsData.setStatus(account, type, "SUCCESS", function(){
+				self.accountsData.setStatus(account, type, self.accountsData.statusTypes.SUCCESS, function(){
 					self.view.addTableRow(self.accountsData, account);
 				});			
 			},
 			error: function(err){
 				self.view.showError(err);
-				self.accountsData.setStatus(account, type, "FAILED");
+				self.accountsData.setStatus(account, type, self.accountsData.statusTypes.FAILED);
 			},
 		});		
 	}

@@ -37,6 +37,23 @@ var rippleAPI = {
 	},
 };
 
+var server = app.listen(3000, function () {
+	var host = server.address().address;
+	var port = server.address().port;
+
+	console.log('client is at http://%s:%s/rippleClient', host, port)
+});
+
+manageRouting();
+
+app.route("/rippleClient")
+.get(function(req, res, next) {
+	res.sendFile(path.join(__dirname, "frontend", "ripple-client.html"));	
+});
+
+app.use("/css", express.static(path.join(__dirname, "frontend", "css")));
+app.use("/js", express.static(path.join(__dirname, "frontend", "js")));
+
 function manageRouting()
 {
 	for(var url in rippleAPI)
@@ -68,22 +85,5 @@ function successResponse(data)
 	return JSON.stringify(d);
 }
 
-var server = app.listen(3000, function () {
-
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port)
-});
-
-manageRouting();
-
-app.route("/rippleClient")
-.get(function(req, res, next) {
-	res.sendFile(path.join(__dirname, "frontend", "ripple-client.html"));	
-});
-
-app.use("/css", express.static(path.join(__dirname, "frontend", "css")));
-app.use("/js", express.static(path.join(__dirname, "frontend", "js")));
 
 
