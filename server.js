@@ -1,6 +1,6 @@
 var express = require("express");
 var path = require("path");
-var Remote = require('./ripple-lib').Remote;
+var Remote = require('ripple-lib').Remote;
 
 var app = express();
 
